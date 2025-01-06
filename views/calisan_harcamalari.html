@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aylık Maaş Giderleri</title>
+  <link rel="stylesheet" href="/static/anasayfa.css" />
+  <link rel="stylesheet" href="/static/girisekran.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik:ital,wght@1,500&display=swap" rel="stylesheet">
+    
+    <style>
+      
+      body {
+      font-family:Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header stil (değiştirilmeden kalacak) */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #354e48;
+      color: white;
+      padding: 65px 20px;
+    }
+
+    /* Yeni Container stil */
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 40px;
+      background-color: white;
+      border: 0.1px solid #c3c8c3;
+      border-radius: 50px;
+      width: 70%;
+      margin: 0 auto;
+      margin-top: -65px;
+    }
+
+    /* Logo stil */
+    .container .logo img {
+      width: 110px;
+      height: auto;
+      margin: 0;
+    }
+
+    /* Navigation menüsü stil */
+    .container nav {
+      flex-grow: 1;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .container nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container nav ul li {
+      margin: 0 30px;
+    }
+
+    .container nav ul li a {
+      color: #050505;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .container nav ul li a:hover {
+      color: #eadecc;
+    }
+      
+      
+      table {
+        width: 70%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-family: "Montserrat", sans-serif;
+         
+      }
+      th,
+      td {
+        border: 0.1px solid #c3c8c3;
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #354e48;
+        color: #eadecc;
+      }
+      td {
+        background-color: #f9f9f9;
+      }
+
+      .profile-container {
+      position: absolute; /* Sayfa üzerinde konumlandır */
+      top: 20px; /* Üstten mesafe */
+      right: 20px; /* Sağdan mesafe */
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Profil fotoğrafı */
+    .profile-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* "Log Out" yazısının görünmemesi */
+    .logout {
+      display: none;
+      background-color: #0e2923;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      cursor: pointer;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* Profil fotoğrafı üzerine gelindiğinde "Log Out" butonunu göster */
+    .profile-container:hover .logout {
+      display:block;
+}
+
+
+h1 {
+        text-align: center;
+        margin-top: 60px;
+        margin-bottom: 30px;
+        font-family: "Rubik", sans-serif;
+        font-size: 32px;
+        font-weight: bold;
+        
+      }
+
+      /* Tablo arkasındaki container */
+      .bg-container {
+        background-color: #f9f6f9; /* Renkli arka plan */
+        padding: 30px 20px; /* Padding değerini koruyalım */
+        border-radius: 25px; /* Yuvarlatılmış köşeler */
+        width: 90%;
+        margin: 20px auto;
+        margin-top: 30px;
+        display: flex; /* Flexbox kullanıyoruz */
+        flex-direction: column;
+        justify-content: flex-start; /* Yatayda ortalamak için */
+        align-items: flex-start; /* Dikeyde üstte tutmak için */
+        font-family: "Montserrat", sans-serif;
+        min-height: auto;
+        position: relative;
+      }
+    </style>
+ 
+
+</head>
+<div>
+  <header>
+    <!-- Header içeriği -->
+  </header>
+  <div class="container">
+    <div class="logo">
+      <img src="/pic/düscafe.jpg" alt="Logo" />
+    </div>
+  <body>
+    <div class="profile-container">
+      <div class="profile-image">
+        <img src="/pic/profil_foto.jpg" alt="Profil Fotoğrafı"> <!-- Profil fotoğrafını buraya ekleyin -->
+      </div>
+      <div class="logout" onclick="logout()">Çıkış Yap</div>
+    </div>
+   <nav>
+     <ul>
+       <li><a href="/anasayfa">Ana Sayfa</a></li>
+       <li><a href="/shift">Shiftler</a></li>
+       <li><a href="/calisanlar">Çalışanlar</a></li>
+       <li><a href="/maaslar">Maaşlar</a></l>
+       <li><a id="homeLink" href="#">Maaş Giderleri</a></li>
+     </ul>
+   </nav>
+ </div>
+ <h1>Aylık Maaş Giderleri</h1>
+  <div class="bg-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Ay</th>
+          <th>Yıl</th>
+          <th>Maaş Giderleri</th>
+        </tr>
+      </thead>
+      <tbody id="maaslar-tbody">
+        <!-- Veriler buraya doldurulacak -->
+      </tbody>
+    </table>
+
+    <script>
+
+    fetch('/api/aylik_maaslar')
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.getElementById('maaslar-tbody');
+            tbody.innerHTML = ''; // Önce tabloyu temizle
+
+            const aylar = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
+                           "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${aylar[item.ay - 1]}</td>
+                    <td>${item.yil}</td>
+                    <td>${item.toplam_maas} TL</td>
+                `;
+                tbody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Veri getirme hatası:', error));
+
+        function logout() {
+    window.location.href = '/login'; // Kullanıcıyı giriş sayfasına yönlendir
+  }      
+</script>
+
+
+    </script>
+  </body>
+</html>

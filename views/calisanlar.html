@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Çalışanlar</title>
+    <link rel="stylesheet" href="/static/anasayfa.css" />
+    <link rel="stylesheet" href="/static/girisekran.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik:ital,wght@1,500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Header stil (değiştirilmeden kalacak) */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #354e48;
+        color: white;
+        padding: 65px 20px;
+      }
+
+      /* Yeni Container stil */
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 40px;
+        background-color: white;
+        border: 0.1px solid #c3c8c3;
+        border-radius: 50px;
+        width: 70%;
+        margin: 0 auto;
+        margin-top: -65px;
+      }
+
+      /* Logo stil */
+      .container .logo img {
+        width: 110px;
+        height: auto;
+        margin: 0;
+      }
+
+      /* Navigation menüsü stil */
+      .container nav {
+        flex-grow: 1;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .container nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .container nav ul li {
+        margin: 0 30px;
+      }
+
+      .container nav ul li a {
+        color: #050505;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        transition: color 0.3s ease;
+      }
+
+      .container nav ul li a:hover {
+        color: #eadecc;
+      }
+
+      table {
+        width: 25%;
+        border-collapse: collapse;
+        margin-top: 0px;
+        margin-left: 20px;
+        padding-top: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ccc;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #354e48;
+        color: #eadecc;
+      }
+      tr:nth-child(even) {
+        background-color: #ffffff;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 60px;
+        margin-bottom: 30px;
+        font-family: "Rubik", sans-serif;
+      }
+
+      /* Tablo arkasındaki container */
+      .table-container {
+        background-color: #f9f6f9; /* Renkli arka plan */
+        padding: 30px 20px; /* Padding değerini koruyalım */
+        border-radius: 25px; /* Yuvarlatılmış köşeler */
+        width: 90%;
+        margin: 20px auto;
+        margin-top: 30px;
+        display: flex; /* Flexbox kullanıyoruz */
+        flex-direction: column;
+        justify-content: flex-start; /* Yatayda ortalamak için */
+        align-items: flex-start; /* Dikeyde üstte tutmak için */
+        font-family: "Montserrat", sans-serif;
+        min-height: auto;
+        position: relative;
+      }
+
+      .form-container {
+        margin: 10px;
+        margin-left: 400px;
+        align-self: flex-start;
+        padding: 20px 25px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        width: 25%;
+        background-color: #eadecc;
+        min-height: auto;
+        flex: 1;
+        position: absolute;
+      }
+      .form-container label {
+        display: block;
+        margin-bottom: 10px;
+        margin-top: 12px;
+        font-weight: bold;
+      }
+      .form-container select,
+      .form-container input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #000000;
+        border-radius: 5px;
+      }
+
+      .form-container button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        margin-top: 20px;
+        background-color: #354e48;
+        color: white;
+      }
+
+      .calisancikar-container {
+        margin: 10px;
+        margin-left: 850px;
+        padding: 20px 25px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        width: 25%;
+        background-color: #eadecc;
+        flex: 1;
+        align-self: flex-start;
+        min-height: auto;
+        position: absolute;
+      }
+      .calisancikar-container label {
+        display: block;
+        margin-bottom: 10px;
+        margin-top: 12px;
+        font-weight: bold;
+      }
+      .calisancikar-container select,
+      .calisancikar-container input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #000000;
+        border-radius: 5px;
+      }
+
+      .calisancikar-container button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        margin-top: 20px;
+        background-color: #354e48;
+        color: white;
+      }
+      .profile-container {
+        position: absolute; /* Sayfa üzerinde konumlandır */
+        top: 20px; /* Üstten mesafe */
+        right: 20px; /* Sağdan mesafe */
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Profil fotoğrafı */
+      .profile-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* "Log Out" yazısının görünmemesi */
+      .logout {
+        display: none;
+        background-color: #0e2923;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 5px;
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 12px;
+        text-align: center;
+        cursor: pointer;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      /* Profil fotoğrafı üzerine gelindiğinde "Log Out" butonunu göster */
+      .profile-container:hover .logout {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- Header içeriği -->
+    </header>
+    <div class="container">
+      <div class="logo">
+        <img src="/pic/düscafe.jpg" alt="Logo" />
+      </div>
+      <div class="profile-container">
+        <div class="profile-image">
+          <img src="/pic/profil_foto.jpg" alt="Profil Fotoğrafı" />
+          <!-- Profil fotoğrafını buraya ekleyin -->
+        </div>
+        <div class="logout" onclick="logout()">Çıkış Yap</div>
+          
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/anasayfa">Ana Sayfa</a></li>
+          <li><a href="/shift">Shiftler</a></li>
+          <li><a id="homeLink" href="#">Çalışanlar</a></li>
+          <li><a href="/maaslar">Maaşlar</a></li>
+          <li><a href="/calisan_harcamalari">Maaş Giderleri</a></li>
+        </ul>
+      </nav>
+    </div>
+    <h1>Çalışanlar Tablosu</h1>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Görev</th>
+          </tr>
+        </thead>
+        <tbody id="calisanlar-tbody"></tbody>
+      </table>
+      <div class="form-container">
+        <label for="calisangorevsecimi1">Çalışan Görevi Seçiniz:</label>
+        <select id="calisangorevsecimi1"></select>
+        <label for="calisanEklee">Çalışan Ekleyiniz:</label>
+        <input type="text" id="calisanEklee" placeholder="Örn: Burak Günay" />
+        <button onclick="ekle()">Ekle</button>
+      </div>
+      <div class="calisancikar-container">
+        <label for="calisangorevsecimi2">Çalışan Çıkarınız:</label>
+        <select id="calisangorevsecimi2"></select>
+
+        <button onclick="cikar()">Çıkar</button>
+      </div>
+    </div>
+    <script>
+      // Çalışanları getir ve tabloya ekle
+      // Çalışanları getir ve tabloya ekle
+      fetch("/api/calisanlar")
+        .then((response) => response.json())
+        .then((calisanlar) => {
+          const tbody = document.getElementById("calisanlar-tbody");
+          tbody.innerHTML = ""; // Tabloyu temizle
+
+          calisanlar.forEach((calisan) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+        <td>${calisan.ad}</td>
+        <td>${calisan.soyad}</td>
+        <td>${
+          calisan.Gorevler ? calisan.Gorevler.gorev_ad : "Belirtilmemiş"
+        }</td>
+      `;
+            tbody.appendChild(row);
+          });
+
+          // Çalışan çıkarma için dropdown doldur
+          const selectSil = document.getElementById("calisangorevsecimi2");
+          selectSil.innerHTML = ""; // Seçim listesini temizle
+
+          calisanlar.forEach((calisan) => {
+            const option = document.createElement("option");
+            option.value = calisan.calisan_id; // Çalışan ID'si
+            option.textContent = `${calisan.ad} ${calisan.soyad}`; // Ad ve Soyad
+            selectSil.appendChild(option);
+          });
+        })
+        .catch((error) => console.error("Çalışanları getirme hatası:", error));
+
+      // Görevleri getir ve select kutularına ekle
+      fetch("/gorevler")
+        .then((response) => response.json())
+        .then((gorevler) => {
+          const selectEkle = document.getElementById("calisangorevsecimi1");
+          selectEkle.innerHTML = ""; // Görev listesini temizle
+
+          gorevler.forEach((gorev) => {
+            const option = document.createElement("option");
+            option.value = gorev.gorev_id;
+            option.textContent = gorev.gorev_ad;
+            selectEkle.appendChild(option);
+          });
+        })
+        .catch((error) => console.error("Görevleri getirme hatası:", error));
+
+      // Çalışan ekleme işlemi
+      function ekle() {
+        const adSoyad = document
+          .getElementById("calisanEklee")
+          .value.trim()
+          .split(" ");
+        const ad = adSoyad[0];
+        const soyad = adSoyad[1];
+        const gorev_id = document.getElementById("calisangorevsecimi1").value;
+
+        if (!ad || !soyad) {
+          alert("Lütfen geçerli bir ad ve soyad giriniz.");
+          return;
+        }
+
+        fetch("/calisanlar", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ ad, soyad, gorev_id }),
+        })
+          .then((response) => {
+            if (response.ok) {
+              alert("Çalışan başarıyla eklendi!");
+              location.reload();
+            } else {
+              alert("Çalışan eklenemedi!");
+            }
+          })
+          .catch((error) => console.error("Çalışan ekleme hatası:", error));
+      }
+
+      // Çalışan silme işlemi
+      function cikar() {
+        const calisan_id = document.getElementById("calisangorevsecimi2").value;
+
+        if (!calisan_id) {
+          alert("Lütfen bir çalışan seçiniz.");
+          return;
+        }
+
+        fetch(`/api/calisanlar/${calisan_id}/archive`, { method: "POST" })
+          .then((response) => {
+            console.log(response); // Yanıtı kontrol et
+            if (response.ok) {
+              alert("Çalışan başarıyla arşivlendi!");
+              location.reload();
+            } else {
+              response.json().then((data) => {
+                alert(data.error || "Çalışan arşivlenemedi!");
+              });
+            }
+          })
+          .catch((error) => console.error("Çalışan silme hatası:", error));
+      }
+
+      // Kullanıcı çıkış işlemi
+      function logout() {
+        window.location.href = "/login"; // Kullanıcıyı giriş sayfasına yönlendir
+      }
+    </script>
+  </body>
+</html>

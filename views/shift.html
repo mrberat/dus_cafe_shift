@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+  <lang="tr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shift Takip</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik:ital,wght@1,500&display=swap" rel="stylesheet">
+    <style>
+      /* Genel stil */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Header stil (değiştirilmeden kalacak) */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #354e48;
+        color: white;
+        padding: 65px 20px;
+      }
+
+      /* Yeni Container stil */
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 40px;  /* Padding değerini azaltıyoruz */
+        background-color: white; /* Beyaz arka plan */
+        border: .1px solid #c3c8c3; /* Koyu yeşil sınır */
+        border-radius: 50px; /* Yuvarlatılmış köşeler */
+        width: 70%;
+        margin: 0 auto;
+        margin-top: -65px; /* Header'ın üzerine gelmesi için */
+      }
+
+      /* Logo stil */
+      .container .logo img {
+        width: 110px;
+        height: auto;
+        margin: 0; /* Logo etrafındaki margin'i sıfırlıyoruz */
+      }
+
+      /* Navigation menüsü stil */
+      .container nav {
+        flex-grow: 1;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .container nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .container nav ul li {
+        margin: 0 30px; /* Menü elemanları arasındaki boşluk */
+      }
+
+      .container nav ul li a {
+        color: #050505; /* Koyu yeşil renk */
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 15px;
+        transition: color 0.3s ease;
+      }
+
+      .container nav ul li a:hover {
+        color: #eadecc; /* Hover efekti */
+      }
+      /* Profil fotoğrafı için container */
+      .profile-container {
+        position: absolute; /* Sayfa üzerinde konumlandır */
+        top: 20px; /* Üstten mesafe */
+        right: 20px; /* Sağdan mesafe */
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* Profil fotoğrafı */
+      .profile-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .profile-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+     
+      th, td {
+        border: .1px solid #000000;
+        padding: 20px;
+        text-align: center;
+      }
+
+      th {
+        background-color: #354e48;
+        color:#eadecc;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+ /* Başlık ortalama */
+    h1 {
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 30px;
+      font-family: "Rubik", sans-serif;
+    }
+      .dropdown-container {
+        background-color: #f9f6f9; /* Renkli arka plan */
+        padding: 30px 20px; /* Padding değerini koruyalım */
+        border-radius: 25px; /* Yuvarlatılmış köşeler */
+        width: 85%;
+        margin: 20px auto;
+        margin-top: 30px;
+        display: flex; /* Flexbox kullanıyoruz */
+        flex-direction: column;
+        justify-content: center; /* Yatayda ortalamak için */
+        align-items: flex-start; /* Dikeyde üstte tutmak için */
+        font-family: "Montserrat", sans-serif;
+      }
+  
+      body {
+      font-family: Arial, sans-serif;
+    }
+    .form-container {
+      margin: 10px auto;
+      padding-right: 35px;
+      padding-left: 35px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border: 1px solid #c3c8c3;
+      border-radius: 10px;
+      width: 55%;
+      background-color: #eadecc;
+    }
+    .form-container label {
+      display: block;
+      margin-bottom: 10px;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+    .form-container select, 
+    .form-container input {
+    
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #000000;
+      border-radius: 5px;
+    }
+   
+    .form-container button {
+
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #000000;
+      border-radius: 5px;
+      margin-top: 20px;
+      background-color:#c3c8c3;
+      color: white;
+
+    
+    }
+
+    .profile-container {
+      position: absolute; /* Sayfa üzerinde konumlandır */
+      top: 20px; /* Üstten mesafe */
+      right: 20px; /* Sağdan mesafe */
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Profil fotoğrafı */
+    .profile-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* "Log Out" yazısının görünmemesi */
+    .logout {
+      display: none;
+      background-color: #0e2923;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      cursor: pointer;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* Profil fotoğrafı üzerine gelindiğinde "Log Out" butonunu göster */
+    .profile-container:hover .logout {
+      display:block;
+}
+   
+
+
+
+
+
+
+      
+    </style>
+  </head>
+
+
+    <!-- Orijinal Header -->
+    <header>
+      <!-- Header içeriği buraya gelecek (bu bölüm değiştirilmeden kalacak) -->
+    </header>
+    
+    <!-- Yeni Container -->
+    <div class="container">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="/pic/düscafe.jpg" alt="Logo"> <!-- Logo resmi burada eklenmeli -->
+
+        
+      </div>
+
+      <!-- Navigation -->
+      <nav>
+        <ul>
+          <li><a href="/anasayfa">Ana Sayfa</a></li> <!-- ID ekledik -->
+          <li><a id="homeLink" href="#">Shiftler</a></li>
+          <li><a href="/calisanlar">Çalışanlar</a></li>
+          <li><a href="/maaslar">Maaşlar</a></li>
+          <li><a href="/calisan_harcamalari">Maaş Giderleri</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="profile-container">
+      <div class="profile-image">
+        <img src="/pic/profil_foto.jpg" alt="Profil Fotoğrafı"> <!-- Profil fotoğrafını buraya ekleyin -->
+      </div>
+      <div class="logout" onclick="logout()">Çıkış Yap</div>
+    </div>
+   
+    <h1>Shift Ekleyin</h1>
+  
+    <div class="table-responsive">
+      <form action="/submit-weekly-shift" method="POST">
+        <!-- Başlangıç ve Bitiş Tarihi Seçimi -->
+        <div class="mb-3">
+          <label for="startDate" class="form-label">Başlangıç Tarihi</label>
+          <input type="date" id="startDate" name="start_date" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="endDate" class="form-label">Bitiş Tarihi</label>
+          <input type="date" id="endDate" name="end_date" class="form-control" required>
+        </div>
+  <form action="/submit-weekly-shift" method="POST">
+    <table class="table table-bordered shift-table">
+      <thead>
+        <tr>
+          <th scope="col">Çalışan</th>
+          <th scope="col">Pazartesi</th>
+          <th scope="col">Salı</th>
+          <th scope="col">Çarşamba</th>
+          <th scope="col">Perşembe</th>
+          <th scope="col">Cuma</th>
+          <th scope="col">Cumartesi</th>
+          <th scope="col">Pazar</th>
+          <th scope="col">İşlem</th>
+        </tr>
+      </thead>
+      <tbody id="shiftTableBody">
+        <tr>
+          <td>
+            <select name="employee_name[]" class="form-control name-input" required>
+              <option value="">Çalışan Seçin</option>
+            </select>
+          </td>
+          <td>
+            <input type="time" name="monday_start[]" class="form-control time-input" value="09:00" required>
+            <input type="time" name="monday_end[]" class="form-control time-input" value="17:00" required>
+          </td>
+          <td>
+            <input type="time" name="tuesday_start[]" class="form-control time-input" value="09:00" required>
+            <input type="time" name="tuesday_end[]" class="form-control time-input" value="17:00" required>
+          </td>
+          <td>
+            <input type="time" name="wednesday_start[]" class="form-control time-input" value="09:00" required>
+            <input type="time" name="wednesday_end[]" class="form-control time-input" value="17:00" required>
+          </td>
+          <td>
+            <input type="time" name="thursday_start[]" class="form-control time-input" value="09:00" required>
+            <input type="time" name="thursday_end[]" class="form-control time-input" value="17:00" required>
+          </td>
+          <td>
+            <input type="time" name="friday_start[]" class="form-control time-input" value="09:00" required>
+            <input type="time" name="friday_end[]" class="form-control time-input" value="17:00" required>
+          </td>
+          <td>
+            <input type="time" name="saturday_start[]" class="form-control time-input" value="09:00">
+            <input type="time" name="saturday_end[]" class="form-control time-input" value="17:00">
+          </td>
+          <td>
+            <input type="time" name="sunday_start[]" class="form-control time-input" value="09:00">
+            <input type="time" name="sunday_end[]" class="form-control time-input" value="17:00">
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger delete-row">Sil</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" id="addRowButton">Satır Ekle</button>
+    <button type="submit" class="btn btn-success">Kaydet</button>
+  </form>
+</div>
+
+<style>
+  /* Tablonun genel stili */
+  .shift-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+
+  /* Tablo başlık stili */
+  .shift-table th {
+    background-color: #354e48;
+    color:#eadecc;
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  /* Tablo hücre stili */
+  .shift-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    vertical-align: middle;
+  }
+
+  /* Çalışan ismi giriş alanı */
+  .name-input {
+    width: 95%;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  /* Saat giriş alanları */
+  .time-input {
+    width: 47%;
+    margin: 5px 1%;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  /* Satır hover efekti */
+  .shift-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  /* Tablonun çevresel düzeni */
+  .table-responsive {
+    padding: 20px;
+    border: 1px solid #f9f6f9;
+    border-radius: 8px;
+    background-color: #f9f6f9;
+    width: 93%;
+    margin: 0px auto;
+    border-radius: 25px ;
+  }
+
+  /* Butonlar */
+  .btn {
+    margin: 5px;
+  }
+
+  .btn-danger {
+    color: white;
+    background-color: #dc3545;
+    border: none;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+</style>
+
+<script>
+  async function fetchCalisanlarForDropdown(dropdown) {
+    try {
+      const response = await fetch('/api/calisanlar'); // API çağrısı
+      const calisanlar = await response.json();
+
+      // Gelen verilerle dropdown'ı doldur
+      calisanlar.forEach((calisan) => {
+        const option = document.createElement('option');
+        option.value = `${calisan.ad} ${calisan.soyad}`;
+        option.textContent = `${calisan.ad} ${calisan.soyad}`;
+        dropdown.appendChild(option);
+      });
+    } catch (error) {
+      console.error('Çalışan verileri alınırken hata oluştu:', error);
+    }
+  }
+
+  // Sayfadaki tüm mevcut dropdown'ları doldur
+  async function fetchCalisanlar() {
+    const dropdowns = document.querySelectorAll('select[name="employee_name[]"]');
+    dropdowns.forEach((dropdown) => fetchCalisanlarForDropdown(dropdown));
+  }
+
+  // Satır ekleme fonksiyonu
+  document.getElementById('addRowButton').addEventListener('click', async function () {
+    const tableBody = document.getElementById('shiftTableBody');
+    const newRow = `
+      <tr>
+        <td>
+          <select name="employee_name[]" class="form-control name-input" required>
+            <option value="">Çalışan Seçin</option>
+          </select>
+        </td>
+        <td>
+          <input type="time" name="monday_start[]" class="form-control time-input" value="09:00" required>
+          <input type="time" name="monday_end[]" class="form-control time-input" value="17:00" required>
+        </td>
+        <td>
+          <input type="time" name="tuesday_start[]" class="form-control time-input" value="09:00" required>
+          <input type="time" name="tuesday_end[]" class="form-control time-input" value="17:00" required>
+        </td>
+        <td>
+          <input type="time" name="wednesday_start[]" class="form-control time-input" value="09:00" required>
+          <input type="time" name="wednesday_end[]" class="form-control time-input" value="17:00" required>
+        </td>
+        <td>
+          <input type="time" name="thursday_start[]" class="form-control time-input" value="09:00" required>
+          <input type="time" name="thursday_end[]" class="form-control time-input" value="17:00" required>
+        </td>
+        <td>
+          <input type="time" name="friday_start[]" class="form-control time-input" value="09:00" required>
+          <input type="time" name="friday_end[]" class="form-control time-input" value="17:00" required>
+        </td>
+        <td>
+          <input type="time" name="saturday_start[]" class="form-control time-input" value="09:00">
+          <input type="time" name="saturday_end[]" class="form-control time-input" value="17:00">
+        </td>
+        <td>
+          <input type="time" name="sunday_start[]" class="form-control time-input" value="09:00">
+          <input type="time" name="sunday_end[]" class="form-control time-input" value="17:00">
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger delete-row">Sil</button>
+        </td>
+      </tr>
+    `;
+    tableBody.insertAdjacentHTML('beforeend', newRow);
+
+    // Yeni eklenen dropdown'ı hedefleyerek doldur
+    const newDropdown = tableBody.lastElementChild.querySelector('select[name="employee_name[]"]');
+    await fetchCalisanlarForDropdown(newDropdown);
+  });
+
+  // Satır silme fonksiyonu
+  document.getElementById('shiftTableBody').addEventListener('click', function (event) {
+    if (event.target.classList.contains('delete-row')) {
+      const row = event.target.closest('tr');
+      row.remove();
+    }
+  });
+
+  // Sayfa yüklendiğinde çalışanları mevcut dropdown'lara doldur
+  window.onload = fetchCalisanlar;
+
+
+  function logout() {
+    window.location.href = '/login'; // Kullanıcıyı giriş sayfasına yönlendir
+  }
+</script>
+
+  </body>
+  </html>

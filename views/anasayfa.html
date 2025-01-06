@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shift Takip</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Rubik:ital,wght@1,500&display=swap" rel="stylesheet">
+    <style>
+      /* Genel stil */
+      body {
+        font-family:Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Header stil (değiştirilmeden kalacak) */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #354e48;
+        color: white;
+        padding: 65px 20px;
+      }
+
+      /* Yeni Container stil */
+      .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 40px;
+        background-color: white;
+        border: 0.1px solid #c3c8c3;
+        border-radius: 50px;
+        width: 70%;
+        margin: 0 auto;
+        margin-top: -65px;
+      }
+
+      /* Logo stil */
+      .container .logo img {
+        width: 110px;
+        height: auto;
+        margin: 0;
+      }
+
+      /* Navigation menüsü stil */
+      .container nav {
+        flex-grow: 1;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .container nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+      }
+
+      .container nav ul li {
+        margin: 0 30px;
+      }
+
+      .container nav ul li a {
+        color: #050505;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        transition: color 0.3s ease;
+      }
+
+      .container nav ul li a:hover {
+        color: #eadecc;
+      }
+
+      /* Tablo stil */
+      table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: 0.1px solid #000000;
+        padding: 20px;
+        text-align: center;
+      }
+
+      th {
+        background-color: #354e48;
+        color: #eadecc;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      /* Başlık ortalama */
+      h1 {
+        text-align: center;
+        margin-top: 60px;
+        margin-bottom: 30px;
+        font-family: "Rubik", sans-serif;
+        
+      }
+
+      /* Tablo arkasındaki container */
+      .table-container {
+        background-color: #f9f6f9;
+        padding: 30px 20px;
+        border-radius: 25px;
+        width: 85%;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      table {
+        width: 80%;
+        margin: 0 auto;
+        border-collapse: collapse;
+      }
+
+      .date-picker {
+        text-align: center;
+        margin: 20px auto;
+        margin-bottom: 35px;
+        margin-top: 10px;
+      }
+
+      .date-picker label {
+        margin-right: 10px;
+        font-weight: bold;
+      }
+
+      .date-picker input {
+        margin-right: 10px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .date-picker button {
+        padding: 5px 10px;
+        background-color: #354e48;
+        color:#eadecc;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .date-picker button:hover {
+        background-color: #eadecc;
+        color: #354e48;
+      }
+
+      .profile-container {
+      position: absolute; /* Sayfa üzerinde konumlandır */
+      top: 20px; /* Üstten mesafe */
+      right: 20px; /* Sağdan mesafe */
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Profil fotoğrafı */
+    .profile-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* "Log Out" yazısının görünmemesi */
+    .logout {
+      display: none;
+      background-color: #0e2923;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 12px;
+      text-align: center;
+      cursor: pointer;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* Profil fotoğrafı üzerine gelindiğinde "Log Out" butonunu göster */
+    .profile-container:hover .logout {
+      display:block;
+}
+    </style>
+  </head>
+  <body>
+    <!-- Orijinal Header -->
+    <header>
+      <!-- Header içeriği buraya gelecek (bu bölüm değiştirilmeden kalacak) -->
+    </header>
+
+    <!-- Yeni Container -->
+    <div class="container">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="/pic/düscafe.jpg" alt="Logo" />
+      </div>
+
+      <div class="profile-container">
+        <div class="profile-image">
+          <img src="/pic/profil_foto.jpg" alt="Profil Fotoğrafı"> <!-- Profil fotoğrafını buraya ekleyin -->
+        </div>
+        <div class="logout" onclick="logout()">Çıkış Yap</div>
+      </div>
+
+      <!-- Navigation --> 
+      <nav>
+        <ul>
+          <li><a id="homeLink" href="#">Ana Sayfa</a></li>
+          <li><a href="/shift">Shiftler</a></li>
+          <li><a href="/calisanlar">Çalışanlar</a></li>
+          <li><a href="/maaslar">Maaşlar</a></li>
+          <li><a href="/calisan_harcamalari">Maaş Giderleri</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Tarih Seçme Alanı -->
+    
+
+    <!-- İçerik -->
+    <h1>Haftalık Çalışma Takvimi</h1>
+
+    <!-- Tabloyu yeni container içinde yerleştiriyoruz -->
+    <div class="table-container">
+      <div class="date-picker">
+        <label for="startDate">Başlangıç Tarihi:</label>
+        <input type="date" id="startDate" />
+        <label for="endDate">Bitiş Tarihi:</label>
+        <input type="date" id="endDate" />
+        <button id="fetchDataBtn">Verileri Getir</button>
+      </div>
+      
+      <table id="calismaTablo">
+        <thead>
+          <tr id="tableHeader">
+            <!-- Günler ve tarihler dinamik olarak eklenecek -->
+          </tr>
+        </thead>
+        <tbody>
+       
+        </tbody>
+      </table>
+      
+      
+    </div>
+    <script>
+  document.getElementById("fetchDataBtn").addEventListener("click", async () => {
+  const startDate = document.getElementById("startDate").value;
+
+  if (!startDate) {
+    alert("Lütfen geçerli bir başlangıç tarihi seçin!");
+    return;
+  }
+
+  try {
+    const response = await fetch(`/api/shifts/weekly?startDate=${startDate}`);
+
+    if (!response.ok) {
+      throw new Error("Veriler alınırken hata oluştu!");
+    }
+
+    const data = await response.json();
+    console.log("Gelen veriler:", data);
+
+    const tableHeader = document.getElementById("tableHeader");
+    const tableBody = document.querySelector("#calismaTablo tbody");
+
+    // Tablo başlıklarını temizle
+    tableHeader.innerHTML = "";
+
+    // Haftanın günleri ve tarihleri
+    const days = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"];
+    let currentDate = new Date(startDate);
+
+    // Çalışan Adı başlığını ekle
+    const nameHeader = document.createElement("th");
+    nameHeader.textContent = "Çalışan Adı";
+    tableHeader.appendChild(nameHeader);
+
+    // Günler ve tarihleri başlıklara ekle
+    days.forEach((day) => {
+      const dayHeader = document.createElement("th");
+      dayHeader.textContent = `${day} (${currentDate.toISOString().split("T")[0].replace(/-/g, "/")})`;
+      tableHeader.appendChild(dayHeader);
+
+      // Tarihi bir gün ileriye taşı
+      currentDate.setDate(currentDate.getDate() + 1);
+    });
+
+    // Tablo verilerini doldur
+    tableBody.innerHTML = ""; // Önceki verileri temizle
+    data.forEach((shift) => {
+      const row = document.createElement("tr");
+
+      // Çalışan Adı sütunu
+      const adCell = document.createElement("td");
+      adCell.textContent = shift.employee_name || "Ad Bilgisi Yok";
+      row.appendChild(adCell);
+
+      // Haftanın günleri için çalışma saatleri
+      days.forEach((day, index) => {
+        const dayCell = document.createElement("td");
+        const dayStartKey = ["monday_start", "tuesday_start", "wednesday_start", "thursday_start", "friday_start", "saturday_start", "sunday_start"][index];
+        const dayEndKey = ["monday_end", "tuesday_end", "wednesday_end", "thursday_end", "friday_end", "saturday_end", "sunday_end"][index];
+
+        const start = shift[dayStartKey] || "OFF-DAY";
+        const end = shift[dayEndKey] || "";
+
+        dayCell.textContent = start !== "OFF-DAY" ? `${start} - ${end}` : "OFF-DAY";
+        row.appendChild(dayCell);
+      });
+
+      tableBody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Veriler alınırken hata oluştu:", error);
+    alert("Veriler alınamadı. Lütfen tekrar deneyin.");
+  }
+});
+function logout() {
+    window.location.href = '/login'; // Kullanıcıyı giriş sayfasına yönlendir
+  }
+
+      
+  
+
+
+
+    </script>
+    
+  </body>
+</html>

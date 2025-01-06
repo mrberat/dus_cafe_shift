@@ -1,0 +1,201 @@
+
+    <div class="table-responsive">
+        <form action="/submit-shift-data" method="POST">
+          <!-- Başlangıç ve Bitiş Tarihi Seçimi -->
+          <div class="mb-3">
+            <label for="startDate" class="form-label">Başlangıç Tarihi</label>
+            <input type="date" id="startDate" name="start_date" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="endDate" class="form-label">Bitiş Tarihi</label>
+            <input type="date" id="endDate" name="end_date" class="form-control" required>
+          </div>
+    <form action="/submit-shift-data" method="POST">
+      <table class="table table-bordered shift-table">
+        <thead>
+          <tr>
+            <th scope="col">Çalışan</th>
+            <th scope="col">Pazartesi</th>
+            <th scope="col">Salı</th>
+            <th scope="col">Çarşamba</th>
+            <th scope="col">Perşembe</th>
+            <th scope="col">Cuma</th>
+            <th scope="col">Cumartesi</th>
+            <th scope="col">Pazar</th>
+            <th scope="col">İşlem</th>
+          </tr>
+        </thead>
+        <tbody id="shiftTableBody">
+          <tr>
+            <td>
+              <input type="text" name="employee_name[]" class="form-control name-input" placeholder="Çalışan İsmi" required>
+            </td>
+            <td>
+              <input type="time" name="monday_start[]" class="form-control time-input" value="09:00" required>
+              <input type="time" name="monday_end[]" class="form-control time-input" value="17:00" required>
+            </td>
+            <td>
+              <input type="time" name="tuesday_start[]" class="form-control time-input" value="09:00" required>
+              <input type="time" name="tuesday_end[]" class="form-control time-input" value="17:00" required>
+            </td>
+            <td>
+              <input type="time" name="wednesday_start[]" class="form-control time-input" value="09:00" required>
+              <input type="time" name="wednesday_end[]" class="form-control time-input" value="17:00" required>
+            </td>
+            <td>
+              <input type="time" name="thursday_start[]" class="form-control time-input" value="09:00" required>
+              <input type="time" name="thursday_end[]" class="form-control time-input" value="17:00" required>
+            </td>
+            <td>
+              <input type="time" name="friday_start[]" class="form-control time-input" value="09:00" required>
+              <input type="time" name="friday_end[]" class="form-control time-input" value="17:00" required>
+            </td>
+            <td>
+              <input type="time" name="saturday_start[]" class="form-control time-input" value="09:00">
+              <input type="time" name="saturday_end[]" class="form-control time-input" value="17:00">
+            </td>
+            <td>
+              <input type="time" name="sunday_start[]" class="form-control time-input" value="09:00">
+              <input type="time" name="sunday_end[]" class="form-control time-input" value="17:00">
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger delete-row">Sil</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" class="btn btn-primary" id="addRowButton">Satır Ekle</button>
+      <button type="submit" class="btn btn-success">Kaydet</button>
+    </form>
+  </div>
+  
+  <style>
+    /* Tablonun genel stili */
+    .shift-table {
+      width: 100%;
+      margin: 20px 0;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+  
+    /* Tablo başlık stili */
+    .shift-table th {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 16px;
+    }
+  
+    /* Tablo hücre stili */
+    .shift-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      vertical-align: middle;
+    }
+  
+    /* Çalışan ismi giriş alanı */
+    .name-input {
+      width: 95%;
+      padding: 5px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  
+    /* Saat giriş alanları */
+    .time-input {
+      width: 47%;
+      margin: 5px 1%;
+      padding: 5px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-align: center;
+    }
+  
+    /* Satır hover efekti */
+    .shift-table tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+  
+    /* Tablonun çevresel düzeni */
+    .table-responsive {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #ffffff;
+    }
+  
+    /* Butonlar */
+    .btn {
+      margin: 5px;
+    }
+  
+    .btn-danger {
+      color: white;
+      background-color: #dc3545;
+      border: none;
+    }
+  
+    .btn-danger:hover {
+      background-color: #c82333;
+    }
+  </style>
+  
+  <script>
+    // Satır ekleme fonksiyonu
+    document.getElementById('addRowButton').addEventListener('click', function() {
+      const tableBody = document.getElementById('shiftTableBody');
+      const newRow = `
+        <tr>
+          <td>
+            <input type="text" name="employee_name[]" class="form-control name-input" placeholder="Çalışan İsmi" required>
+          </td>
+          <td>
+            <input type="time" name="monday_start[]" class="form-control time-input" value="09:00" required>
+            <input type="time" name="monday_end[]" class="form-control time-input" value="17:00" required>
+          </td>
+          <td>
+            <input type="time" name="tuesday_start[]" class="form-control time-input" value="09:00" required>
+            <input type="time" name="tuesday_end[]" class="form-control time-input" value="17:00" required>
+          </td>
+          <td>
+            <input type="time" name="wednesday_start[]" class="form-control time-input" value="09:00" required>
+            <input type="time" name="wednesday_end[]" class="form-control time-input" value="17:00" required>
+          </td>
+          <td>
+            <input type="time" name="thursday_start[]" class="form-control time-input" value="09:00" required>
+            <input type="time" name="thursday_end[]" class="form-control time-input" value="17:00" required>
+          </td>
+          <td>
+            <input type="time" name="friday_start[]" class="form-control time-input" value="09:00" required>
+            <input type="time" name="friday_end[]" class="form-control time-input" value="17:00" required>
+          </td>
+          <td>
+            <input type="time" name="saturday_start[]" class="form-control time-input" value="09:00">
+            <input type="time" name="saturday_end[]" class="form-control time-input" value="17:00">
+          </td>
+          <td>
+            <input type="time" name="sunday_start[]" class="form-control time-input" value="09:00">
+            <input type="time" name="sunday_end[]" class="form-control time-input" value="17:00">
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger delete-row">Sil</button>
+          </td>
+        </tr>
+      `;
+      tableBody.insertAdjacentHTML('beforeend', newRow);
+    });
+  
+    // Satır silme fonksiyonu
+    document.getElementById('shiftTableBody').addEventListener('click', function(event) {
+      if (event.target.classList.contains('delete-row')) {
+        const row = event.target.closest('tr');
+        row.remove();
+      }
+    });
+  </script>
+  

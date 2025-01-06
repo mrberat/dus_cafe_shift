@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.container {
+    width: 70%;
+    max-width: 1000px;
+    height: 500px;
+    display: flex;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.left {
+    flex: 1;
+    background-image: url('arkaplansol.jpeg'); /* Arka plan fotoğrafını buraya ekleyin */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.left h1 {
+    font-size: 36px;
+    text-align: left;
+    font-weight: bold;
+    margin-bottom: 200px;
+    line-height: 1.5 ;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+    
+}
+
+.right {
+    flex: 1;
+    background-color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.right h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: italic;
+    color: #545454;
+    
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 2px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px;
+    background-color: #007b5e;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #005f46;
+}
+
+a {
+    color: #007b5e;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+.options label{
+    margin-left: -270px;
+    margin-top: 4px; 
+    
+    
+}
+.right label{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 3;
+    font-style: normal;
+    font-size: 10px;
+    color: #545454;
+
+}
+.options a{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 3;
+  font-style: normal;
+  font-size: 10px;
+}
