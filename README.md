@@ -26,7 +26,8 @@ Projenin geliştirilme sürecinde çevik yöntem tercih edilmiştir. Bu yöntem,
 Veritabanı
 Veritabanı tasarımı, çalışan bilgilerinin, shift verilerinin ve maaş kayıtlarının güvenli ve düzenli bir şekilde saklanmasını sağlamak amacıyla optimize edilmiştir.
 
-![resim](https://github.com/user-attachments/assets/8e7d6dab-e579-43b2-b6fe-dd705c9faa7e)
+![resim](https://github.com/user-attachments/assets/490d4a95-108f-40a2-b689-f84e6de20844)
+
 
 
 ![resim](https://github.com/user-attachments/assets/bae788df-9146-4cd4-9d76-821c03946dc4)
